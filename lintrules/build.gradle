@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+dependencies {
+    compile 'com.android.tools.lint:lint-api:24.5.0'
+    compile 'com.android.tools.lint:lint-checks:24.5.0'
+    compile 'com.android.tools.lint:lint:24.5.0'
+    compile gradleApi()
+    testCompile 'com.android.tools.lint:lint-tests:24.5.0'}
+
+jar {
+    manifest {
+        attributes 'Lint-Registry': 'io.jug6ernaut.lint.CustomIssueRegistry'
+    }
+}
+
+configurations {
+    lintChecks
+}
+
+dependencies {
+    lintChecks files(jar)
+}
